@@ -1,0 +1,20 @@
+Написать SQL-запросы для PostgreSQL добавления трех полей, изменения одного поля и добавления двух индексов в базу данных размером свыше 100 ГБ и более 8 миллионов строк.
+
+1) добавления трех полей
+
+ALTER TABLE Customers
+ADD COLUMN Pole1 VARCHAR(45) NULL ,
+ADD COLUMN Pole2 VARCHAR(45) NULL ,
+ADD COLUMN Pole3 VARCHAR(45) NULL ;
+
+2) изменения одного поля
+
+ALTER TABLE Customers
+ALTER COLUMN FirstName TYPE VARCHAR(50);
+
+3)
+CREATE INDEX index_name_1
+ON table_name (column_name_1, column_name_2,....);
+
+CREATE INDEX index_name_2
+ON table_name (column_name_1, column_name_2,....);

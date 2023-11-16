@@ -1,0 +1,15 @@
+SQL запросы:
+1) Выборки пользователей, у которых количество постов больше, чем у пользователя их пригласившего.
+    SELECT * FROM users as t1 left join users as t2 on t1.invited_by_user_id = t2.id where t1.posts_qty > t2.posts_qty
+
+2) Выборки пользователей, имеющих максимальное количество постов в своей группе.
+    SELECT name, group_id, MAX(posts_qty) FROM users GROUP BY group_id
+
+3) Выборки групп, количество пользователей в которых превышает 10000.
+    SELECT  t1.name , count(*) as user_count FROM groups as t1 join users as t2 on t2.group_id = t1.id GROUP BY t1.name HAVING user_count > 1000
+
+4) Выборки пользователей, у которых пригласивший их пользователь из другой группы.
+    SELECT * FROM users as t1 left join users as t2 on t1.invited_by_user_id = t2.id where t1.group_id !=  t2.group_id
+
+5) Выборки групп с максимальным количеством постов у пользователей.
+    SELECT group_id FROM users where post_qty = (SELECT MAX(post_qty) FROM users)
